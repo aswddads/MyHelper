@@ -37,5 +37,13 @@ dependencies {
     //以下SDK开发者请根据需要自行选择
     //bmob-sdk：Bmob的android sdk包，包含了Bmob的数据存储、文件等服务，以下是最新的bmob-sdk:
     //3.5.0：请务必查看下面注释[1]
-    compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile ('cn.bmob.android:bmob-sdk:3.5.0'){
+        exclude group: 'io.reactivex'
+    }
+    //CircleImageView
+    compile 'de.hdodenhof:circleimageview:2.1.0'
+    //RxVolly  需要过滤  与Bmob冲突
+    compile ('com.kymjs.rxvolley:rxvolley:1.1.0'){
+        exclude group: 'io.reactivex'
+    }
 }

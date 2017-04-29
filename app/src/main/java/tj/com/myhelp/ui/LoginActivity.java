@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -17,6 +18,7 @@ import tj.com.myhelp.MainActivity;
 import tj.com.myhelp.R;
 import tj.com.myhelp.entity.MyUser;
 import tj.com.myhelp.utils.SpUtils;
+import tj.com.myhelp.view.CustomDialog;
 
 /**
  * Created by Jun on 17/4/29.
@@ -34,6 +36,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private CheckBox keep_password;
     private TextView tv_forget;
 
+    private CustomDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +54,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnLogin.setOnClickListener(this);
 
-        tv_forget=(TextView)findViewById(R.id.tv_forget);
+        tv_forget = (TextView) findViewById(R.id.tv_forget);
         tv_forget.setOnClickListener(this);
 
+        dialog = new CustomDialog(this, 100, 100, R.layout.dialog_loding, R.style.Theme_dialog, Gravity.CENTER,R.style.pop_anim_style);
+        //点击其他地方无效
+        dialog.setCancelable(false);
         keep_password = (CheckBox) findViewById(R.id.keep_password);
 //        设置选中的状态
         boolean isCheck = SpUtils.getBoolean(this, "keeppass", false);
@@ -75,6 +82,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 String password = et_password.getText().toString().trim();
 //                判断是否为空
                 if (!TextUtils.isEmpty(name) & !TextUtils.isEmpty(password)) {
+                    dialog.show();
                     //进行登陆
                     final MyUser user = new MyUser();
                     user.setUsername(name);
@@ -82,6 +90,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     user.login(new SaveListener<MyUser>() {
                         @Override
                         public void done(MyUser myUser, BmobException e) {
+                            dialog.dismiss();
                             //判断结果
                             if (e == null) {
                                 //判断邮箱是否验证
@@ -101,7 +110,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.tv_forget:
-                startActivity(new Intent(LoginActivity.this,ForgetPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class));
                 break;
         }
     }

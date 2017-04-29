@@ -43,6 +43,10 @@
             android:label="@string/regis"/>
         <activity android:name=".ui.ForgetPasswordActivity"
             android:label="@string/forgetpassword"/>
+        <activity android:name=".ui.CourierActivity"
+            android:label="@string/text_express_query"/>
+        <activity android:name=".ui.PhoneActivity"
+            android:label="@string/text_belonging_query"/>
 
     </application>
 
