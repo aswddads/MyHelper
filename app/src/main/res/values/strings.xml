@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">MyHelp</string>
     <string name="text_setting">设置</string>
+    <string name="login">登陆</string>
+    <string name="regis">注册</string>
+    <string name="forgetpassword">忘记密码</string>
 </resources>

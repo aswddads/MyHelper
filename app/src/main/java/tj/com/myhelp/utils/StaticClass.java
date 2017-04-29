@@ -18,4 +18,8 @@ public class StaticClass {
      * Bugly key
      */
     public static final String BUGLY_APP_ID="3561df0c0b";
+    /**
+     * Bmob key
+     */
+    public static final String BMOB_APP_ID="97fde37ffa6f85f473d13b03d40a1b20";
 }
