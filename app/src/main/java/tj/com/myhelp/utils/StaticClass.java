@@ -37,7 +37,7 @@ public class StaticClass {
     public static final String WECHAT_KEY = "78f723dccf85aea324a3cf0daac97f35";
 
     //妹子接口
-    public static final String GIRL_URL = "";
+    public static final String GIRL_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1";
 
     //语音Key
     public static final String VOICE_KEY = "583081c6";

@@ -47,6 +47,7 @@
             android:label="@string/text_express_query"/>
         <activity android:name=".ui.PhoneActivity"
             android:label="@string/text_belonging_query"/>
+        <activity android:name=".ui.WebViewActivity" />
 
     </application>
 

@@ -79,10 +79,17 @@ public class UseFragment extends Fragment implements View.OnClickListener {
         tv_phone = (TextView) view.findViewById(R.id.tv_phone);
         tv_phone.setOnClickListener(this);
 
-        et_username = (EditText) view.findViewById(R.id.et_username);
+        et_username=(EditText) view.findViewById(R.id.et_username);
         et_sex = (EditText) view.findViewById(R.id.et_sex);
         et_age = (EditText) view.findViewById(R.id.et_age);
         et_desc = (EditText) view.findViewById(R.id.et_desc);
+
+        //设置具体的值
+        MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
+        et_username.setText(userInfo.getUsername());
+        et_age.setText(userInfo.getAge() + "");
+        et_sex.setText(userInfo.isSex() ? getString(R.string.text_boy) : getString(R.string.text_girl_f));
+        et_desc.setText(userInfo.getDesc());
 
         btn_update_ok = (Button) view.findViewById(R.id.btn_update_ok);
         btn_update_ok.setOnClickListener(this);
@@ -106,12 +113,6 @@ public class UseFragment extends Fragment implements View.OnClickListener {
 
         //默认是不可点击的/不可输入
         setEnabled(false);
-        //设置具体的值
-        MyUser userInfo = BmobUser.getCurrentUser(MyUser.class);
-        et_username.setText(userInfo.getUsername());
-        et_age.setText(userInfo.getAge() + "");
-        et_sex.setText(userInfo.isSex() ? getString(R.string.text_boy) : getString(R.string.text_girl_f));
-        et_desc.setText(userInfo.getDesc());
     }
 
     //控制焦点
@@ -129,7 +130,7 @@ public class UseFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_exit_user:
                 //清除缓存用户对象
                 MyUser.logOut();
-                // 现在的currentUser是null了
+                //现在的currentUser是null了
                 BmobUser currentUser = MyUser.getCurrentUser();
                 startActivity(new Intent(getActivity(), LoginActivity.class));
                 getActivity().finish();

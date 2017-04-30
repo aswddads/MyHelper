@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import tj.com.myhelp.MainActivity;
 import tj.com.myhelp.R;
 import tj.com.myhelp.utils.L;
 
@@ -104,7 +103,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()){
             case R.id.btn_start:
             case R.id.iv_back:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
         }

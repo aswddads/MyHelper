@@ -46,4 +46,7 @@ dependencies {
     compile ('com.kymjs.rxvolley:rxvolley:1.1.0'){
         exclude group: 'io.reactivex'
     }
+    compile 'com.squareup.picasso:picasso:2.5.2'
+//    photoview
+    compile 'com.commit451:PhotoView:1.2.4'
 }
