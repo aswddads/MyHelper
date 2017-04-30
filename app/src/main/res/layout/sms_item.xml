@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tj.com.myhelp.view.DiapatchLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:padding="10dp"
+        android:background="@drawable/dialog_white_bg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收件人" />
+
+        <TextView
+            android:textSize="15sp"
+            android:textColor="@android:color/black"
+            android:id="@+id/tv_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="内容" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/btn_send_sms"
+                android:textColor="@color/color_white"
+                android:background="@drawable/button_bg"
+                android:text="回复"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</tj.com.myhelp.view.DiapatchLinearLayout>

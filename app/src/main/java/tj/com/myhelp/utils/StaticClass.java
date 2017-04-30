@@ -40,11 +40,11 @@ public class StaticClass {
     public static final String GIRL_URL = "http://gank.io/api/search/query/listview/category/福利/count/50/page/1";
 
     //语音Key
-    public static final String VOICE_KEY = "583081c6";
+    public static final String VOICE_KEY = "59056a1b";
 
     //短信Action
     public static final String SMS_ACTION = "android.provider.Telephony.SMS_RECEIVED";
 
-    //版本更新
-    public static final String CHECK_UPDATE_URL = "http://192.168.1.23:8080/liuguilin/config.json";
+//    //版本更新
+//    public static final String CHECK_UPDATE_URL = "http://192.168.1.23:8080/liuguilin/config.json";
 }

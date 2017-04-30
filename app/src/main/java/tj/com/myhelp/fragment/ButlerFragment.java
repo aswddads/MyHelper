@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechSynthesizer;
+import com.iflytek.cloud.SynthesizerListener;
 import com.kymjs.rxvolley.RxVolley;
 import com.kymjs.rxvolley.client.HttpCallback;
 
@@ -24,6 +28,7 @@ import tj.com.myhelp.R;
 import tj.com.myhelp.adapter.ChatListAdapter;
 import tj.com.myhelp.entity.ChatListData;
 import tj.com.myhelp.utils.L;
+import tj.com.myhelp.utils.SpUtils;
 import tj.com.myhelp.utils.StaticClass;
 
 /**
@@ -38,7 +43,7 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
     private ChatListAdapter adapter;
 
     //TTS
-   // private SpeechSynthesizer mTts;
+    private SpeechSynthesizer mTts;
 
     //输入框
     private EditText et_text;
@@ -56,12 +61,12 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
     private void findView(View view) {
 
         //1.创建SpeechSynthesizer对象, 第二个参数：本地合成时传InitListener
-//        mTts = SpeechSynthesizer.createSynthesizer(getActivity(), null);
-//        //2.合成参数设置，详见《科大讯飞MSC API手册(Android)》SpeechSynthesizer 类
-//        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");//设置发音人
-//        mTts.setParameter(SpeechConstant.SPEED, "50");//设置语速
-//        mTts.setParameter(SpeechConstant.VOLUME, "80");//设置音量，范围0~100
-//        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD); //设置云端
+        mTts = SpeechSynthesizer.createSynthesizer(getActivity(), null);
+        //2.合成参数设置，详见《科大讯飞MSC API手册(Android)》SpeechSynthesizer 类
+        mTts.setParameter(SpeechConstant.VOICE_NAME, "xiaoyan");//设置发音人
+        mTts.setParameter(SpeechConstant.SPEED, "50");//设置语速
+        mTts.setParameter(SpeechConstant.VOLUME, "80");//设置音量，范围0~100
+        mTts.setParameter(SpeechConstant.ENGINE_TYPE, SpeechConstant.TYPE_CLOUD); //设置云端
         //设置合成音频保存位置（可自定义保存位置），保存在“./sdcard/iflytek.pcm”
         //保存在SD卡需要在AndroidManifest.xml添加写SD卡权限
         //如果不需要保存合成音频，注释该行代码
@@ -143,10 +148,10 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
     //添加左边文本
     private void addLeftItem(String text) {
 
-       // boolean isSpeak = ShareUtils.getBoolean(getActivity(), "isSpeak", false);
-//        if (isSpeak) {
-//            startSpeak(text);
-//        }
+        boolean isSpeak = SpUtils.getBoolean(getActivity(), "isSpeak", false);
+        if (isSpeak) {
+            startSpeak(text);
+        }
 
         ChatListData date = new ChatListData();
         date.setType(ChatListAdapter.VALUE_LEFT_TEXT);
@@ -170,18 +175,19 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         //滚动到底部
         mChatListView.setSelection(mChatListView.getBottom());
     }
-//
-//    //开始说话
-//    private void startSpeak(String text) {
-//        //3.开始合成
-//        mTts.startSpeaking(text, mSynListener);
-//    }
 
-//    //合成监听器
-//    private SynthesizerListener mSynListener = new SynthesizerListener() {
-//        //会话结束回调接口，没有错误时，error为null
-//        public void onCompleted(SpeechError error) {
-//        }
+
+    //    //开始说话
+    private void startSpeak(String text) {
+//        //3.开始合成
+        mTts.startSpeaking(text, mSynListener);
+    }
+
+    //    //合成监听器
+    private SynthesizerListener mSynListener = new SynthesizerListener() {
+        //        //会话结束回调接口，没有错误时，error为null
+        public void onCompleted(SpeechError error) {
+        }
 
         //缓冲进度回调
         //percent为缓冲进度0~100，beginPos为缓冲音频在文本中开始位置，endPos表示缓冲音频在文本中结束位置，info为附加信息。
@@ -189,6 +195,7 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         }
 
         //开始播放
+
         public void onSpeakBegin() {
         }
 
@@ -209,7 +216,8 @@ public class ButlerFragment extends Fragment implements View.OnClickListener {
         public void onEvent(int arg0, int arg1, int arg2, Bundle arg3) {
         }
     };
-//}
+}
+
 
 
 

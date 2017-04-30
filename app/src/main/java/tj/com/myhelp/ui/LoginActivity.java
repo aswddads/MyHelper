@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import tj.com.myhelp.MainActivity;
 import tj.com.myhelp.R;
 import tj.com.myhelp.entity.MyUser;
 import tj.com.myhelp.utils.SpUtils;
+import tj.com.myhelp.utils.UtilsTools;
 import tj.com.myhelp.view.CustomDialog;
 
 /**
@@ -37,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private TextView tv_forget;
 
     private CustomDialog dialog;
+    private ImageView iv_login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
+        iv_login=(ImageView)findViewById(R.id.iv_login);
+        UtilsTools.getImageFromSp(this,iv_login);
         btn_registered = (Button) findViewById(R.id.btn_registered);
         btn_registered.setOnClickListener(this);
         et_name = (EditText) findViewById(R.id.et_name);

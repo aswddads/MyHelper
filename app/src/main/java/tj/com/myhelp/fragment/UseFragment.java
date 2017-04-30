@@ -290,6 +290,5 @@ public class UseFragment extends Fragment implements View.OnClickListener {
     public void onDestroy() {
         super.onDestroy();
         UtilsTools.putImageToSp(getActivity(),profile_image);
-
     }
 }

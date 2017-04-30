@@ -123,6 +123,7 @@ public class GuideActivity extends AppCompatActivity implements View.OnClickList
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             ((ViewPager) container).addView(mList.get(position));
+            //       设置字体
             return mList.get(position);
         }
 
